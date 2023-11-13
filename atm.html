@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>projeto senai</title>
+
+    <div id="atm"></div>
+    <h1>Máquina ATM</h1>
+
+    <label for="amount">Quantidade</label>
+    <input type="number" id="amount" placeholder="...">
+
+    <button onclick="depositar()">Depositar</button>
+    <button onclick="sacar()">Sacar</button>
+    <button onclick="showExtrato()">Extrato</button>
+
+    <div id="result"></div>
+
+</div>    
+</head>
+<body>
+    
+
+    <script>
+        let saldo = 0;
+        let totCred = 0;
+        let totDeb = 0;
+    
+        function depositar() {
+            let amount = parseFloat(document.getElementById('amount').value);
+            saldo += amount;
+            totCred += amount;
+            document.getElementById('result').innerText = `Deposited: ${amount}. Total Credit: ${totCred}. Balance: ${saldo}`;
+        }
+    
+        function sacar() {
+            let amount = parseFloat(document.getElementById('amount').value);
+            if (amount <= saldo) {
+                saldo -= amount;
+                totDeb += amount;
+                document.getElementById('result').innerText = `Withdrew: ${amount}. Total Debit: ${totDeb}. Balance: ${saldo}`;
+            } else {
+                document.getElementById('result').innerText = `Insufficient funds!`;
+            }
+        }
+    
+        function showExtrato() {
+            document.getElementById('result').innerText = `Total Credit: ${totCred}. Total Debit: ${totDeb}. Balance: ${saldo}`;
+        }
+    </script>
+</body>
+</html>
